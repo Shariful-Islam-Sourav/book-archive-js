@@ -13,6 +13,7 @@ const searchBook = () => {
   const searchText = searchInput.value;
   toggleSpinner("block");
   toggleBookItems("none");
+  toggleErrorMsg("none");
   const url = `https://openlibrary.org/search.json?q=${searchText}`;
   fetch(url)
     .then((res) => res.json())
