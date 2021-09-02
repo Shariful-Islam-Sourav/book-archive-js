@@ -15,20 +15,35 @@ const showBooks = (books) => {
   resultSection.textContent = "";
   //Showing Total Search Results
   const showAmountOfBooks = document.createElement("h3");
-  showAmountOfBooks.classList.add("text-success")
+  showAmountOfBooks.classList.add("text-success");
   showAmountOfBooks.innerText = `Showing ${books.length} books`;
   resultSection.appendChild(showAmountOfBooks);
   //Showing Book Info
   books.forEach((book) => {
+    //Author Name Error Handling
+    const authorName =
+      book.author_name?.[0] === undefined
+        ? "Author Unavailable"
+        : book.author_name[0];
+    //Publish Year Error Handling
+    const publishYear =
+      book.first_publish_year === undefined
+        ? "Year Not Found"
+        : book.first_publish_year;
+    //Book Coverage Error Handling
+    const bookCover =
+      book.cover_i === undefined
+        ? "images/notAvailable.jpg"
+        : `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
     const bookItem = document.createElement("div");
     bookItem.classList.add("col");
     bookItem.innerHTML = `
        <div class="card h-100">
-            <img height="100%" src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="...">
+            <img height="100%" src=${bookCover} class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${book.title}</h5>
-                <strong class="card-text">By- ${book.author_name}</strong>
-                <p>First Publish Year- ${book.first_publish_year}</p>
+                <strong class="card-text">By- ${authorName}</strong>
+                <p>First Publish Year- ${publishYear}</p>
             </div>
         </div>
        `;
