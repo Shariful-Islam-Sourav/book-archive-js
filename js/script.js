@@ -1,13 +1,17 @@
+//Toggle Spinner
 const toggleSpinner = (displayProp) => {
   document.getElementById("spinner").style.display = displayProp;
 };
+//Toggle Book Items
 const toggleBookItems = (displayProp) => {
   document.getElementById("Books-container-section").style.display =
     displayProp;
 };
+//Toggle Error Message
 const toggleErrorMsg = (displayProp) => {
   document.getElementById("error-msg").style.display = displayProp;
 };
+//Search items
 const searchBook = () => {
   const searchInput = document.getElementById("search-input");
   const searchText = searchInput.value;
@@ -20,8 +24,9 @@ const searchBook = () => {
     .then((data) => showBooks(data.docs));
   searchInput.value = "";
 };
-
+//Books Overall Results
 const showBooks = (books) => {
+  //Item unavailable error handling
   if (books.length === 0) {
     toggleErrorMsg("block");
   }
@@ -68,3 +73,5 @@ const showBooks = (books) => {
   toggleSpinner("none");
   toggleBookItems("block");
 };
+
+// ----------------------------END OF CODE-----------------------------
