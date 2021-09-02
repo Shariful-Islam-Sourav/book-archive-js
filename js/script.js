@@ -1,9 +1,13 @@
 const toggleSpinner = (displayProp) => {
-    document.getElementById("spinner").style.display = displayProp;
-}
+  document.getElementById("spinner").style.display = displayProp;
+};
 const toggleBookItems = (displayProp) => {
-    document.getElementById("Books-container-section").style.display = displayProp;
-}
+  document.getElementById("Books-container-section").style.display =
+    displayProp;
+};
+const toggleErrorMsg = (displayProp) => {
+  document.getElementById("error-msg").style.display = displayProp;
+};
 const searchBook = () => {
   const searchInput = document.getElementById("search-input");
   const searchText = searchInput.value;
@@ -17,6 +21,9 @@ const searchBook = () => {
 };
 
 const showBooks = (books) => {
+  if (books.length === 0) {
+    toggleErrorMsg("block");
+  }
   const totalResults = document.getElementById("total-results");
   const booksContainer = document.getElementById("books-container");
   booksContainer.textContent = "";
