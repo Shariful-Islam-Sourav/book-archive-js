@@ -22,14 +22,14 @@
   <body class="bg-light">
     <!-- Header Section -->
     <header>
-      <nav class="navbar navbar-light bg-white">
+      <nav class="navbar navbar-light bg-success">
         <div class="container-fluid">
-          <a class="navbar-brand d-flex align-items-center" href="#">
+          <a class="navbar-brand d-flex align-items-center text-white" href="#">
             <img
-              src="images/books-logo.png"
-              alt=""
+              src="images/logo.png"
+              alt="logo"
               width="70"
-              class="d-inline-block align-text-top"
+              class="d-inline-block align-text-top me-1"
             />
             OurBooks
           </a>
@@ -38,8 +38,9 @@
     </header>
     <main>
       <!-- Search Section -->
-      <section class="container">
-        <div class="input-group my-5 w-75 mx-auto">
+      <section class="container" id="search-section">
+          <h2 class="text-center text-success mt-5 mb-3">Find Your Books!</h2>
+        <div class="input-group mb-5 w-75 mx-auto">
           <input
             id="search-input"
             type="text"
@@ -57,6 +58,7 @@
             Search
           </button>
         </div>
+        <div id="results-section"></div>
       </section>
       <!-- Show Books Section -->
       <section class="container">
