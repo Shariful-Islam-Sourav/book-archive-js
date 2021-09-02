@@ -1,6 +1,14 @@
+const toggleSpinner = (displayProp) => {
+    document.getElementById("spinner").style.display = displayProp;
+}
+const toggleBookItems = (displayProp) => {
+    document.getElementById("Books-container-section").style.display = displayProp;
+}
 const searchBook = () => {
   const searchInput = document.getElementById("search-input");
   const searchText = searchInput.value;
+  toggleSpinner("block");
+  toggleBookItems("none");
   const url = `https://openlibrary.org/search.json?q=${searchText}`;
   fetch(url)
     .then((res) => res.json())
@@ -9,15 +17,15 @@ const searchBook = () => {
 };
 
 const showBooks = (books) => {
-  const resultSection = document.getElementById("results-section");
+  const totalResults = document.getElementById("total-results");
   const booksContainer = document.getElementById("books-container");
   booksContainer.textContent = "";
-  resultSection.textContent = "";
+  totalResults.textContent = "";
   //Showing Total Search Results
   const showAmountOfBooks = document.createElement("h3");
   showAmountOfBooks.classList.add("text-success");
   showAmountOfBooks.innerText = `Showing ${books.length} books`;
-  resultSection.appendChild(showAmountOfBooks);
+  totalResults.appendChild(showAmountOfBooks);
   //Showing Book Info
   books.forEach((book) => {
     //Author Name Error Handling
@@ -38,16 +46,17 @@ const showBooks = (books) => {
     const bookItem = document.createElement("div");
     bookItem.classList.add("col");
     bookItem.innerHTML = `
-       <div class="card h-100">
-            <img height="100%" src=${bookCover} class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">${book.title}</h5>
-                <strong class="card-text">By- ${authorName}</strong>
-                <p>First Publish Year- ${publishYear}</p>
-            </div>
-        </div>
-       `;
+         <div class="card h-100">
+              <img height="100%" src=${bookCover} class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">${book.title}</h5>
+                  <strong class="card-text">By- ${authorName}</strong>
+                  <p>First Publish Year- ${publishYear}</p>
+              </div>
+          </div>
+         `;
     booksContainer.appendChild(bookItem);
-    //console.log(book);
   });
+  toggleSpinner("none");
+  toggleBookItems("block");
 };
